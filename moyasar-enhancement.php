@@ -33,6 +33,5 @@ require_once MOY_INC . 'autoload.php';
 use MOYASARENHANCEMENT\INCLUDES\autoload;
 autoload::fire();
 
-echo MOYASAR_API_BASE_URL;
 
 
