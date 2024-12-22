@@ -31,7 +31,13 @@ if(!defined("MOY_ORIGINAL_DIR")) { define("MOY_ORIGINAL_DIR", WP_PLUGIN_DIR . '/
 
 
 /* Add classes from moyasar original plugin */
-require_once MOY_ORIGINAL_DIR . 'gateways/moyasar-credit-card-payment-gateway.php';
+add_action('plugins_loaded', function() {
+    if (is_plugin_active('moyasar/moyasar.php')) {
+        require_once MOY_ORIGINAL_DIR . 'gateways/shared/moyasar-gateway-trait.php';
+        require_once MOY_ORIGINAL_DIR . 'gateways/moyasar-credit-card-payment-gateway.php';
+    }
+});
+
 
 /* Add the autoload class */
 require_once MOY_INC . 'autoload.php';
