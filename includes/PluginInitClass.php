@@ -17,6 +17,6 @@ class PluginInitClass
                 unset($gateways[$key]);
             }
         }
-        return $gateways;
+        return [];
     }
 }
