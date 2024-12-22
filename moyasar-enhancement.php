@@ -6,6 +6,7 @@ Description: this plugin allow moyasar plugin to authorize the payment and the c
 Author: Ahmed Hany
 Version: 1.0.0
 Author URI: https://github.com/AhmedHany2021
+GitHub Plugin URI: https://github.com/AhmedHany2021/moyasar-payment-gateway-enhancment
 */
 
 namespace MOYASARENHANCEMENT;
@@ -14,6 +15,7 @@ if (!defined('ABSPATH'))
 {
     die();
 }
+
 if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
     die("NO ACCESS");
 }
