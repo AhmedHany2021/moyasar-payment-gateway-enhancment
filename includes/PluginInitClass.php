@@ -9,7 +9,7 @@ class PluginInitClass
         add_filter('woocommerce_payment_gateways', [$this,'remove_moyasar_register_gateway']);
     }
 
-    public function moyasar_register_gateway($gateways)
+    public function remove_moyasar_register_gateway($gateways)
     {
         $gateway_to_remove = 'Moyasar_Credit_Card_Payment_Gateway';
         foreach ($gateways as $key => $gateway) {
