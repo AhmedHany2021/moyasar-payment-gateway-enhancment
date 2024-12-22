@@ -27,3 +27,12 @@ if(!defined("MOY_INC")) { define("MOY_INC",MOY_BASEDIR.'includes' . '/'); }
 if(!defined("MOY_TEMPLATES")) { define("MOY_TEMPLATES",MOY_BASEDIR.'templates' . '/'); }
 if(!defined("MOY_URI")) { define("MOY_URI",plugin_dir_url(__FILE__) ); }
 if(!defined("MOY_ASSETS")) { define("MOY_ASSETS", MOY_URI.'assets' . '/'); }
+
+/* Add the autoload class */
+require_once MOY_INC . 'autoload.php';
+use MOYASARENHANCEMENT\INCLUDES\autoload;
+autoload::fire();
+
+echo MOYASAR_API_BASE_URL;
+
+
