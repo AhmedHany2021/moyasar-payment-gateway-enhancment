@@ -17,7 +17,7 @@ if (!defined('ABSPATH'))
 }
 
 if ( !in_array( 'moyasar/moyasar.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-    die("NO ACCESS From Here");
+    die("NO ACCESS From Here Fine");
 }
 
 /* Add the main global variables */
