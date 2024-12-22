@@ -27,6 +27,11 @@ if(!defined("MOY_INC")) { define("MOY_INC",MOY_BASEDIR.'includes' . '/'); }
 if(!defined("MOY_TEMPLATES")) { define("MOY_TEMPLATES",MOY_BASEDIR.'templates' . '/'); }
 if(!defined("MOY_URI")) { define("MOY_URI",plugin_dir_url(__FILE__) ); }
 if(!defined("MOY_ASSETS")) { define("MOY_ASSETS", MOY_URI.'assets' . '/'); }
+if(!defined("MOY_ORIGINAL_DIR")) { define("MOY_ORIGINAL_DIR", WP_PLUGIN_DIR . '/moyasar' . '/'); }
+
+
+/* Add classes from moyasar original plugin */
+require_once MOY_ORIGINAL_DIR . 'gateways/moyasar-credit-card-payment-gateway.php';
 
 /* Add the autoload class */
 require_once MOY_INC . 'autoload.php';
@@ -36,4 +41,5 @@ autoload::fire();
 /* Remove the basic moyasar payment method and add custom one */
 use MOYASARENHANCEMENT\INCLUDES\PluginInitClass;
 $PluginInitClass = new PluginInitClass();
+
 
