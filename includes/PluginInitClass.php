@@ -6,7 +6,7 @@ class PluginInitClass
 {
     public function __construct()
     {
-        add_filter('woocommerce_payment_gateways', [$this,'remove_moyasar_register_gateway']);
+        add_filter('woocommerce_payment_gateways', [$this,'remove_moyasar_register_gateway'],999);
     }
 
     public function remove_moyasar_register_gateway($gateways)
@@ -17,7 +17,6 @@ class PluginInitClass
                 unset($gateways[$key]);
             }
         }
-
         return $gateways;
     }
 }
