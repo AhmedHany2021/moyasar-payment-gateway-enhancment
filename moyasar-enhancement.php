@@ -16,7 +16,7 @@ if (!defined('ABSPATH'))
     die();
 }
 
-if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+if ( !in_array( 'moyasar/moyasar.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
     die("NO ACCESS");
 }
 
