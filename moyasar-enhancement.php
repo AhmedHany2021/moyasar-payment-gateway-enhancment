@@ -29,24 +29,35 @@ if(!defined("MOY_URI")) { define("MOY_URI",plugin_dir_url(__FILE__) ); }
 if(!defined("MOY_ASSETS")) { define("MOY_ASSETS", MOY_URI.'assets' . '/'); }
 if(!defined("MOY_ORIGINAL_DIR")) { define("MOY_ORIGINAL_DIR", WP_PLUGIN_DIR . '/moyasar' . '/'); }
 
+/* Add the autoload class */
+require_once MOY_INC . 'autoload.php';
+use MOYASARENHANCEMENT\INCLUDES\autoload;
+use MOYASARENHANCEMENT\INCLUDES\PluginInitClass;
 
-/* Add classes from moyasar original plugin */
+autoload::fire();
+
+/*
+    Add classes from moyasar original plugin
+    Note: we will add this code in the if condition to make sure our plugin will work after the loading of the original plugin
+ */
+
 add_action('plugins_loaded', function() {
     if (is_plugin_active('moyasar/moyasar.php')) {
+
         require_once MOY_ORIGINAL_DIR . 'gateways/shared/moyasar-gateway-trait.php';
         require_once MOY_ORIGINAL_DIR . 'gateways/moyasar-credit-card-payment-gateway.php';
+
+        /* Remove the basic moyasar payment method and add custom one */
+        require_once MOY_INC . 'MoyasarPaymentClass.php';
+        $PluginInitClass = new PluginInitClass();
+
+
     }
 });
 
 
-/* Add the autoload class */
-require_once MOY_INC . 'autoload.php';
-use MOYASARENHANCEMENT\INCLUDES\autoload;
-autoload::fire();
 
-/* Remove the basic moyasar payment method and add custom one */
-require_once MOY_INC . 'MoyasarPaymentClass.php';
-use MOYASARENHANCEMENT\INCLUDES\PluginInitClass;
-$PluginInitClass = new PluginInitClass();
+
+
 
 
