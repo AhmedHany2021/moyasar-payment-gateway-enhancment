@@ -4,7 +4,7 @@ Plugin Name: moyasar enhancement plugin
 Plugin URI: https://github.com/AhmedHany2021
 Description: this plugin allow moyasar plugin to authorize the payment and the capture it on order status change
 Author: Ahmed Hany
-Version: 1.0.8
+Version: 1.0.9
 Author URI: https://github.com/AhmedHany2021
 GitHub Plugin URI: https://github.com/AhmedHany2021/moyasar-payment-gateway-enhancment
 */
