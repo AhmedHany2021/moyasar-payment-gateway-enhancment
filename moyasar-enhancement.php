@@ -52,7 +52,7 @@ add_action('plugins_loaded', function() {
         require_once MOY_INC . 'MoyasarPaymentClass.php';
         add_filter('woocommerce_payment_gateways',
             function($gateways) {
-                $gateways[] = "MoyasarPaymentClass";
+                $gateways[] = "MOYASARENHANCEMENT\INCLUDES\MoyasarPaymentClass";
                 return $gateways;
             },
             999);
