@@ -42,8 +42,13 @@ class MoyasarPaymentClass extends \Moyasar_Credit_Card_Payment_Gateway
             $response['redirect'] = '#'; // To Avoid redirection.
 
         }
+        if ($is_classic && $response['message'] === 'APPROVED') {
+            $response['redirect2'] = $response['redirect'];
+            $response['redirect'] = '#'; // To Avoid redirection.
 
-        if ($response['result'] === 'failed') {
+        }
+
+        if ($response['result'] === 'failed' && $response['message'] === 'APPROVED') {
             wc_add_notice($response['message'], 'error');
         }
 
