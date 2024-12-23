@@ -16,6 +16,7 @@ class MoyasarPaymentClass extends \Moyasar_Credit_Card_Payment_Gateway
         $this->form_fields = array_merge($shared_fields, $gateway_fields);
     }
 
+
     public function process_payment($order_id)
     {
         if ( ! isset( $_POST['moyasar-cc-nonce-field'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash ($_POST['moyasar-cc-nonce-field'] )) , 'moyasar-form' ) ) {
@@ -46,9 +47,8 @@ class MoyasarPaymentClass extends \Moyasar_Credit_Card_Payment_Gateway
             wc_add_notice($response['message'], 'error');
         }
 
+        wc_add_notice('the payment triggered', 'error');
         return $response;
     }
-
-
 
 }
