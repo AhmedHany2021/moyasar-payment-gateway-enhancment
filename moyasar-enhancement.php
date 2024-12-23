@@ -48,10 +48,14 @@ add_action('plugins_loaded', function() {
         require_once MOY_ORIGINAL_DIR . 'gateways/moyasar-credit-card-payment-gateway.php';
 
         /* Remove the basic moyasar payment method and add custom one */
-        require_once MOY_INC . 'MoyasarPaymentClass.php';
         $PluginInitClass = new PluginInitClass();
-
-
+        require_once MOY_INC . 'MoyasarPaymentClass.php';
+        add_filter('woocommerce_payment_gateways',
+            function($gateways) {
+                $gateways[] = "MoyasarPaymentClass";
+                return $gateways;
+            },
+            999);
     }
 });
 
