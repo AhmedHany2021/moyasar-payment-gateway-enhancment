@@ -45,6 +45,7 @@ use MOYASARENHANCEMENT\INCLUDES\autoload;
 autoload::fire();
 
 /* Remove the basic moyasar payment method and add custom one */
+require_once MOY_INC . 'MoyasarPaymentClass.php';
 use MOYASARENHANCEMENT\INCLUDES\PluginInitClass;
 $PluginInitClass = new PluginInitClass();
 
