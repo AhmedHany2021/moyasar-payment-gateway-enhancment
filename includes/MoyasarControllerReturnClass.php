@@ -4,12 +4,47 @@ namespace MOYASARENHANCEMENT\INCLUDES;
 
 class MoyasarControllerReturnClass extends \Moyasar_Controller_Return
 {
+    public function perform_redirect($url)
+    {
+        wp_safe_redirect($url);
+        exit;
+    }
+
+    public function get_query_param($key, $default = null)
+    {
+        if ( ! isset( $_GET['moyasar-nonce-field'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash ($_GET['moyasar-nonce-field'] )) , 'moyasar-form' ) ) {
+            return null;
+        }
+        return isset($_GET[$key]) ? sanitize_text_field( wp_unslash ($_GET[$key] ) ): $default;
+    }
+
+    public function fetch_payment($gateway, $payment_id)
+    {
+        return \Moyasar_Quick_Http::make()
+            ->basic_auth($gateway->api_sk())
+            ->get($gateway->moyasar_api_url("payments/$payment_id"))
+            ->json();
+    }
+
+    public function fetch_stc_payment($gateway, $order, $otp)
+    {
+        return \Moyasar_Quick_Http::make()
+            ->basic_auth($gateway->api_sk())
+            ->get($gateway->moyasar_api_url("/stc_pays/{$order->get_meta('stc_pay_otp_id')}/proceed"),
+                [
+                    'otp_token' => $order->get_meta('stc_pay_otp_token'),
+                    'otp_value' => $otp
+                ]
+            )
+            ->json();
+    }
+
     public static function init()
     {
         parent::init();
         $controller = new static();
-        remove_action('wp', array($controller, 'handle_user_return'));
-        add_action('wp', array($controller, 'handle_user_return'));
+        remove_action('wp', array($controller, 'handle_user_return'),998);
+        add_action('wp', array($controller, 'handle_user_return'),999);
 
         return static::$instance = $controller;
     }
