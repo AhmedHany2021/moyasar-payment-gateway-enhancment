@@ -32,6 +32,7 @@ if(!defined("MOY_ORIGINAL_DIR")) { define("MOY_ORIGINAL_DIR", WP_PLUGIN_DIR . '/
 /* Add the autoload class */
 require_once MOY_INC . 'autoload.php';
 use MOYASARENHANCEMENT\INCLUDES\autoload;
+use MOYASARENHANCEMENT\INCLUDES\MoyasarControllerReturnClass;
 use MOYASARENHANCEMENT\INCLUDES\PluginInitClass;
 
 autoload::fire();
@@ -59,6 +60,7 @@ add_action('plugins_loaded', function() {
                 return $gateways;
             },
             999);
+        MoyasarControllerReturnClass::init();
 
 
     }

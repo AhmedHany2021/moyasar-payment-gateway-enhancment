@@ -7,9 +7,8 @@ class MoyasarControllerReturnClass extends \Moyasar_Controller_Return
     public static function init()
     {
         parent::init();
-        remove_action('wp', array($controller, 'handle_user_return'));
         $controller = new static();
-
+        remove_action('wp', array($controller, 'handle_user_return'));
         add_action('wp', array($controller, 'handle_user_return'));
 
         return static::$instance = $controller;
