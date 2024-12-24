@@ -49,7 +49,8 @@ class MoyasarPaymentClass extends \Moyasar_Credit_Card_Payment_Gateway
         }
 
         if ($response['result'] === 'failed' && $response['message'] === 'APPROVED') {
-            wc_add_notice($response['message'], 'error');
+//            wc_add_notice($response['message'], 'error');
+            wc_add_notice("we are here", 'error');
         }
 
         wc_add_notice('the payment triggered', 'error');
