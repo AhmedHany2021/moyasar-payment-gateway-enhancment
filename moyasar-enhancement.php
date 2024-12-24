@@ -46,6 +46,9 @@ add_action('plugins_loaded', function() {
 
         require_once MOY_ORIGINAL_DIR . 'gateways/shared/moyasar-gateway-trait.php';
         require_once MOY_ORIGINAL_DIR . 'gateways/moyasar-credit-card-payment-gateway.php';
+        require_once MOY_ORIGINAL_DIR . 'helpers/moyasar-helper-coupons.php';
+        require_once MOY_ORIGINAL_DIR . 'quick-http/class-moyasar-http-exception.php';
+        require_once MOY_ORIGINAL_DIR . 'controllers/moyasar-controller-return.php';
 
         /* Remove the basic moyasar payment method and add custom one */
         $PluginInitClass = new PluginInitClass();
