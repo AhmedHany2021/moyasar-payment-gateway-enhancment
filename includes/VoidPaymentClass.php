@@ -26,8 +26,9 @@ class VoidPaymentClass
             try {
                 $payment = \Moyasar_Quick_Http::make()
                     ->basic_auth($gateway->api_sk())
-                    ->post("https://api.moyasar.com/v1/payments/$payment_id/void", [])
+                    ->post("https://api.moyasar.com/v1/payments/$payment_id/void")
                     ->json();
+                    moyasar_logger("[Moyasar] [Refund] Voided payment for order $order_id", 'info', $order_id);
             }catch (\Exception $exception){
                 moyasar_logger("[Moyasar] [Refund] [Void] [Exception] {$exception->getMessage()}, Fallback to Refund API.", 'error', $order_id);
             }
