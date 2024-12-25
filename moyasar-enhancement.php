@@ -34,7 +34,9 @@ require_once MOY_INC . 'autoload.php';
 use MOYASARENHANCEMENT\INCLUDES\autoload;
 use MOYASARENHANCEMENT\INCLUDES\CapturePaymentsClass;
 use MOYASARENHANCEMENT\INCLUDES\MoyasarControllerReturnClass;
+use MOYASARENHANCEMENT\INCLUDES\MoyasarPaymentClass;
 use MOYASARENHANCEMENT\INCLUDES\PluginInitClass;
+use MOYASARENHANCEMENT\INCLUDES\VoidPaymentClass;
 
 autoload::fire();
 
@@ -65,6 +67,7 @@ add_action('plugins_loaded', function() {
             999);
         MoyasarControllerReturnClass::init();
         $capture = new CapturePaymentsClass();
+        $void = new VoidPaymentClass();
 
 
     }
