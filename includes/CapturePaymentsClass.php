@@ -17,21 +17,25 @@ class CapturePaymentsClass
             if (!$order) {
                 return false;
             }
-            $transaction_id = $order->get_transaction_id();
-            if (!$transaction_id) {
+            $payment_id = $order->get_transaction_id('edit');
+            if (!$payment_id) {
                 return false;
             }
             $payment_method = $order->get_payment_method();
             $gateway = moyasar_get_payment_method_class($payment_method);
-            $payment = \Moyasar_Quick_Http::make()
-                ->basic_auth($gateway->api_sk())
-                ->post($this->moyasar_api_url("payments/".$transaction_id."/capture"), [
-                    'amount' => \Moyasar_Currency_Helper::amount_to_minor(
-                        $order->get_total(),
-                        $order->get_currency()
-                    ),
-                ])
-                ->json();
+            try {
+                $payment = \Moyasar_Quick_Http::make()
+                    ->basic_auth($gateway->api_sk())
+                    ->post("https://api.moyasar.com/v1/payments/$payment_id/capture", [
+                        'amount' => \Moyasar_Currency_Helper::amount_to_minor(
+                            $order->get_total(),
+                            $order->get_currency()
+                        ),
+                    ])
+                    ->json();
+            }catch (\Exception $exception){
+                moyasar_logger("[Moyasar] [Refund] [Void] [Exception] {$exception->getMessage()}, Fallback to Refund API.", 'error', $order_id);
+            }
         }
         return false;
     }

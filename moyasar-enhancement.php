@@ -52,6 +52,7 @@ add_action('plugins_loaded', function() {
         require_once MOY_ORIGINAL_DIR . 'quick-http/class-moyasar-http-exception.php';
         require_once MOY_ORIGINAL_DIR . 'quick-http/class-moyasar-quick-http.php';
         require_once MOY_ORIGINAL_DIR . 'controllers/moyasar-controller-return.php';
+        require_once MOY_ORIGINAL_DIR . 'utils/helpers.php';
 
         /* Remove the basic moyasar payment method and add custom one */
         $PluginInitClass = new PluginInitClass();
