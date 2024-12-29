@@ -41,6 +41,9 @@ class RefundOrderCronClass
                     $order->update_status('processing');
                     $order->save();
                 }
+                $order_id = $order->get_id();
+                $order_date = $order->get_date_created()->date('Y-m-d H:i:s');
+                error_log("Order ID: $order_id, Created on: $order_date");
             }
         }
     }
