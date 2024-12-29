@@ -17,7 +17,7 @@ class ProductCustomFieldClass
     public function add_payment_type_field()
     {
         global $post;
-        $payment_type = get_post_meta($post->ID, '_payment_type', true);
+        $payment_type = get_post_meta($post->ID, 'payment_type', true);
         if (!$payment_type) {
             $payment_type = 'authorize';
         }
