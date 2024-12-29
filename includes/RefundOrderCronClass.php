@@ -20,14 +20,14 @@ class RefundOrderCronClass
     }
     public function check_on_hold_orders_and_perform_action()
     {
-        $current_date = new DateTime();
+        $current_date = new \DateTime();
         $date_7_days_ago = $current_date->modify('-7 days')->format('Y-m-d H:i:s');
         $args = array(
             'status' => 'on-hold',
             'date_created' => '<' . $date_7_days_ago,
             'limit' => -1,
         );
-        $query = new WC_Order_Query($args);
+        $query = new \WC_Order_Query($args);
         $orders = $query->get_orders();
         if ($orders) {
             foreach ($orders as $order) {
