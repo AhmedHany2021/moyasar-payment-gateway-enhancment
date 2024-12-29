@@ -1,7 +1,10 @@
 <?php
 
 namespace MOYASARENHANCEMENT\INCLUDES;
-
+if (!defined('ABSPATH'))
+{
+    die();
+}
 class MoyasarControllerReturnClass extends \Moyasar_Controller_Return
 {
     public function perform_redirect($url)

@@ -1,7 +1,10 @@
 <?php
 
 namespace MOYASARENHANCEMENT\INCLUDES;
-
+if (!defined('ABSPATH'))
+{
+    die();
+}
 class autoload
 {
     public static function fire()

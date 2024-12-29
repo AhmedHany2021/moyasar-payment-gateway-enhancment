@@ -1,7 +1,10 @@
 <?php
 
 namespace MOYASARENHANCEMENT\INCLUDES;
-
+if (!defined('ABSPATH'))
+{
+    die();
+}
 class PluginInitClass
 {
     public function __construct()

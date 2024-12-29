@@ -1,7 +1,10 @@
 <?php
 
 namespace MOYASARENHANCEMENT\INCLUDES;
-
+if (!defined('ABSPATH'))
+{
+    die();
+}
 class MoyasarPaymentClass extends \Moyasar_Credit_Card_Payment_Gateway
 {
     public function __construct()
