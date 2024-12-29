@@ -37,6 +37,7 @@ use MOYASARENHANCEMENT\INCLUDES\MoyasarControllerReturnClass;
 use MOYASARENHANCEMENT\INCLUDES\MoyasarPaymentClass;
 use MOYASARENHANCEMENT\INCLUDES\PluginInitClass;
 use MOYASARENHANCEMENT\INCLUDES\ProductCustomFieldClass;
+use MOYASARENHANCEMENT\INCLUDES\RefundOrderCronClass;
 use MOYASARENHANCEMENT\INCLUDES\VoidPaymentClass;
 
 autoload::fire();
@@ -70,6 +71,7 @@ add_action('plugins_loaded', function() {
         $capture = new CapturePaymentsClass();
         $void = new VoidPaymentClass();
         $customfield = new ProductCustomFieldClass();
+        $RefundCron = new RefundOrderCronClass();
     }
 });
 
