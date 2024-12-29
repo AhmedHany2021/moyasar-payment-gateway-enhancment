@@ -14,7 +14,7 @@ class CapturePaymentsClass
 
     public function custom_order_status_changed_action( $order_id, $old_status, $new_status, $order )
     {
-        if ( 'completed' === $new_status && $old_status === 'on-hold' )
+        if ( 'completed' === $new_status )
         {
             $order = wc_get_order($order_id);
             if (!$order) {
