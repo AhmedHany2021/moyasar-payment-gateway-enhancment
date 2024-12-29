@@ -30,11 +30,13 @@ class MoyasarPaymentClass extends \Moyasar_Credit_Card_Payment_Gateway
         }
 
         $is_classic = sanitize_text_field( wp_unslash (($_POST['mysr_form'] ?? 'blocks' ) )) === 'classic';
+
+        $authorize = $this->check_order_items_payment_type($order_id);
         $source = [
             'type' => 'token',
             'token' => sanitize_text_field( wp_unslash (isset( $_POST['mysr_token'] ) ? $_POST['mysr_token'] : '' )  ),
             '3ds' => true,
-            'manual' => true
+            'manual' => $authorize,
         ];
 
         $response = $this->payment($order_id, $source, true);
@@ -52,12 +54,23 @@ class MoyasarPaymentClass extends \Moyasar_Credit_Card_Payment_Gateway
         }
 
         if ($response['result'] === 'failed' && $response['message'] === 'APPROVED') {
-//            wc_add_notice($response['message'], 'error');
             wc_add_notice("we are here", 'error');
         }
 
         wc_add_notice('the payment triggered', 'error');
         return $response;
+    }
+
+    public function check_order_items_payment_type($order_id) {
+        $order = wc_get_order($order_id);
+        foreach ($order->get_items() as $item_id => $item) {
+            $product_id = $item->get_product_id();
+            $payment_type = get_post_meta($product_id, 'payment_type', true);
+            if ($payment_type === 'authorize') {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
