@@ -33,17 +33,12 @@ class RefundOrderCronClass
             foreach ($orders as $order) {
                 if ($this->check_order_items_payment_type($order))
                 {
-                    $order->update_status('refunded');
-                    $order->save();
+                    $order->update_status('refunded', 'Order was automatically cancelled after being on-hold for more than 7 days.', true);
                 }
                 else
                 {
-                    $order->update_status('processing');
-                    $order->save();
+                    $order->update_status('processing', 'Order was automatically changed status to processing after being on-hold for more than 7 days.', true);
                 }
-                $order_id = $order->get_id();
-                $order_date = $order->get_date_created()->date('Y-m-d H:i:s');
-                error_log("Order ID: $order_id, Created on: $order_date");
             }
         }
     }
